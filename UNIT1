@@ -1,0 +1,87 @@
+// ==========================================
+// Task 1: Trace the Stack and Output Order
+// ==========================================
+console.log("--- Task 1 Starting ---");
+
+function greet() {
+  console.log('Hi');
+  sayBye();
+}
+
+function sayBye() {
+  console.log('Bye');
+}
+
+greet();
+console.log('Done');
+
+
+// ==========================================
+// Task 2: Trace the Stack and Output Order
+// ==========================================
+// Wrapped in a small timeout to let Task 1 finish cleanly
+setTimeout(() => {
+  console.log("\n--- Task 2 Starting ---");
+  
+  setTimeout(() => console.log('One'), 3000);
+  setTimeout(() => console.log('Two'), 1000);
+  setTimeout(() => console.log('Three'), 2000);
+}, 50);
+
+
+// ==========================================
+// Task 3: Trace the Stack and Output Order
+// ==========================================
+// Scheduled to run after Task 2's initial setup
+setTimeout(() => {
+  console.log("\n--- Task 3 Starting ---");
+  
+  for (var i = 1; i <= 3; i++) {
+    setTimeout(() => {
+      console.log(i);
+    }, i * 1000);
+  }
+}, 100);
+
+
+// ==========================================
+// Task 4: Counter Output and Behavior Explanation
+// ==========================================
+// Scheduled to run after Task 3 clears out
+setTimeout(() => {
+  console.log("\n--- Task 4 Starting ---");
+  
+  function makeCounter() {
+    let count = 0;
+    return function() {
+      count++;
+      console.log(count);
+    };
+  }
+
+  const counter1 = makeCounter();
+  counter1();
+  counter1();
+
+  const counter2 = makeCounter();
+  counter2();
+}, 4500);
+
+
+// ==========================================
+// Task 5: Output Order for logLater
+// ==========================================
+// Scheduled to run last to ensure neat terminal output
+setTimeout(() => {
+  console.log("\n--- Task 5 Starting ---");
+  
+  function logLater(id) {
+    setTimeout(() => {
+      console.log('ID is', id);
+    }, 1000);
+  }
+
+  logLater(1);
+  logLater(2);
+  logLater(3);
+}, 5000);
